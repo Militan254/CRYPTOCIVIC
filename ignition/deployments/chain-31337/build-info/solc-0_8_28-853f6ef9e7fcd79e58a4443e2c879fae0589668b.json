@@ -1,0 +1,49 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-853f6ef9e7fcd79e58a4443e2c879fae0589668b",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "compilerType": "solc",
+  "toolVersions": {
+    "hardhat": "3.13.0"
+  },
+  "userSourceNameMap": {
+    "contracts/JOOUSTVoting.sol": "project/contracts/JOOUSTVoting.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode.linkReferences",
+            "evm.bytecode.object",
+            "evm.bytecode.opcodes",
+            "evm.bytecode.sourceMap",
+            "evm.deployedBytecode.immutableReferences",
+            "evm.deployedBytecode.linkReferences",
+            "evm.deployedBytecode.object",
+            "evm.deployedBytecode.opcodes",
+            "evm.deployedBytecode.sourceMap",
+            "evm.methodIdentifiers"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/JOOUSTVoting.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\ncontract JOOUSTVoting {\n\n    enum ElectionScope {\n        SCHOOL,\n        UNIVERSITY\n    }\n\n    enum ElectionStatus {\n        UPCOMING,\n        ACTIVE,\n        CLOSED\n    }\n\n    struct Election {\n        uint256 electionId;\n        string title;\n        string position;\n        ElectionScope scope;\n        uint256 schoolId;\n        ElectionStatus status;\n    }\n\n    struct Candidate {\n        uint256 candidateId;\n        uint256 electionId;\n        bytes32 candidateHash;\n        uint256 voteCount;\n        bool approved;\n    }\n\n    // ============================================================\n    // ADMINISTRATION\n    // ============================================================\n\n    address public owner;\n\n    modifier onlyOwner() {\n        require(msg.sender == owner, \"Only owner\");\n        _;\n    }\n\n    // ============================================================\n    // STORAGE\n    // ============================================================\n\n    mapping(uint256 => Election) public elections;\n    mapping(uint256 => Candidate) public candidates;\n\n    // electionId => voterHash => whether the voter has voted\n    mapping(uint256 => mapping(bytes32 => bool)) public hasVoted;\n\n    // voterHash => school ID\n    mapping(bytes32 => uint256) public voterSchool;\n\n    // voterHash => whether the voter has been registered\n    mapping(bytes32 => bool) public voterRegistered;\n\n    uint256 public electionCount;\n    uint256 public candidateCount;\n\n    // ============================================================\n    // EVENTS\n    // ============================================================\n\n    event ElectionCreated(\n        uint256 indexed electionId,\n        string title,\n        string position,\n        ElectionScope scope,\n        uint256 schoolId\n    );\n\n    event CandidateAdded(\n        uint256 indexed candidateId,\n        uint256 indexed electionId\n    );\n\n    event VoteCast(\n        uint256 indexed electionId,\n        uint256 indexed candidateId,\n        bytes32 indexed voterHash\n    );\n\n    event VoterRegistered(\n        bytes32 indexed voterHash,\n        uint256 indexed schoolId\n    );\n\n    // ============================================================\n    // CONSTRUCTOR\n    // ============================================================\n\n    constructor() {\n        owner = msg.sender;\n    }\n\n    // ============================================================\n    // ELECTION MANAGEMENT\n    // ============================================================\n\n    function createElection(\n        string memory _title,\n        string memory _position,\n        ElectionScope _scope,\n        uint256 _schoolId\n    ) external onlyOwner {\n\n        require(\n            _scope == ElectionScope.UNIVERSITY || _schoolId > 0,\n            \"School election requires school\"\n        );\n\n        electionCount++;\n\n        elections[electionCount] = Election({\n            electionId: electionCount,\n            title: _title,\n            position: _position,\n            scope: _scope,\n            schoolId: _schoolId,\n            status: ElectionStatus.UPCOMING\n        });\n\n        emit ElectionCreated(\n            electionCount,\n            _title,\n            _position,\n            _scope,\n            _schoolId\n        );\n    }\n\n    // ============================================================\n    // CANDIDATE MANAGEMENT\n    // ============================================================\n\n    function addCandidate(\n        uint256 _electionId,\n        bytes32 _candidateHash\n    ) external onlyOwner {\n\n        require(\n            elections[_electionId].electionId != 0,\n            \"Election does not exist\"\n        );\n\n        candidateCount++;\n\n        candidates[candidateCount] = Candidate({\n            candidateId: candidateCount,\n            electionId: _electionId,\n            candidateHash: _candidateHash,\n            voteCount: 0,\n            approved: true\n        });\n\n        emit CandidateAdded(\n            candidateCount,\n            _electionId\n        );\n    }\n\n    // ============================================================\n    // ELECTION STATUS\n    // ============================================================\n\n    function setElectionStatus(\n        uint256 _electionId,\n        ElectionStatus _status\n    ) external onlyOwner {\n\n        require(\n            elections[_electionId].electionId != 0,\n            \"Election does not exist\"\n        );\n\n        elections[_electionId].status = _status;\n    }\n\n    // ============================================================\n    // VOTER REGISTRATION\n    // ============================================================\n\n    function registerVoter(\n        bytes32 _voterHash,\n        uint256 _schoolId\n    ) external onlyOwner {\n\n        require(\n            _schoolId > 0,\n            \"Invalid school\"\n        );\n\n        voterSchool[_voterHash] = _schoolId;\n        voterRegistered[_voterHash] = true;\n\n        emit VoterRegistered(\n            _voterHash,\n            _schoolId\n        );\n    }\n\n    // ============================================================\n    // VOTING\n    // ============================================================\n\n    function vote(\n        uint256 _electionId,\n        uint256 _candidateId,\n        bytes32 _voterHash\n    ) external {\n\n        require(\n            elections[_electionId].electionId != 0,\n            \"Election does not exist\"\n        );\n\n        require(\n            elections[_electionId].status == ElectionStatus.ACTIVE,\n            \"Election is not active\"\n        );\n\n        require(\n            candidates[_candidateId].electionId == _electionId,\n            \"Candidate is not in this election\"\n        );\n\n        require(\n            candidates[_candidateId].approved,\n            \"Candidate is not approved\"\n        );\n\n        require(\n            voterRegistered[_voterHash],\n            \"Voter is not registered\"\n        );\n\n        require(\n            !hasVoted[_electionId][_voterHash],\n            \"Student has already voted\"\n        );\n\n        // University elections are open to registered students\n        // from any school.\n        //\n        // School elections require the voter's registered school\n        // to match the election's school.\n        require(\n            elections[_electionId].scope == ElectionScope.UNIVERSITY ||\n            voterSchool[_voterHash] == elections[_electionId].schoolId,\n            \"Student not eligible for this school election\"\n        );\n\n        hasVoted[_electionId][_voterHash] = true;\n\n        candidates[_candidateId].voteCount++;\n\n        emit VoteCast(\n            _electionId,\n            _candidateId,\n            _voterHash\n        );\n    }\n\n    // ============================================================\n    // RESULTS\n    // ============================================================\n\n    function getCandidateVotes(\n        uint256 _candidateId\n    ) external view returns (uint256) {\n\n        require(\n            candidates[_candidateId].candidateId != 0,\n            \"Candidate does not exist\"\n        );\n\n        return candidates[_candidateId].voteCount;\n    }\n}\n"
+      }
+    }
+  }
+}

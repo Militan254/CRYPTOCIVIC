@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "lib": ["es2023"],
+    "module": "node20",
+    "target": "es2023",
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "types": ["node", "mocha"],
+    "verbatimModuleSyntax": true,
+    "moduleResolution": "node16"
+  },
+  "include": [
+    "backend/**/*.ts",
+    "scripts/**/*.ts",
+    "hardhat.config.ts",
+    "ignition/**/*.ts"
+  ],
+  "exclude": [
+    "frontend",
+    "node_modules",
+    "artifacts",
+    "cache",
+    "dist"
+  ]
+}

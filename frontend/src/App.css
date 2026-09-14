@@ -1,0 +1,3626 @@
+/* =========================================================
+   JOOUST VOTING SYSTEM
+   APP.CSS
+   Clean unified stylesheet
+   ========================================================= */
+
+
+/* =========================================================
+   ROOT / VARIABLES
+   ========================================================= */
+
+:root {
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+
+  --white: #ffffff;
+  --gray: #868e96;
+  --gray-dark: #343a40;
+
+  --primary: #007bff;
+  --secondary: #868e96;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+
+  --gold: #f6c453;
+  --gold-dark: #dca936;
+
+  --page-bg: #06131f;
+  --page-bg-soft: #091b2b;
+
+  --panel: rgba(8, 24, 38, 0.95);
+  --panel-soft: rgba(10, 29, 45, 0.92);
+  --panel-light: rgba(255, 255, 255, 0.045);
+
+  --text: #ffffff;
+  --text-soft: rgba(255, 255, 255, 0.78);
+  --text-muted: rgba(255, 255, 255, 0.58);
+  --text-faint: rgba(255, 255, 255, 0.40);
+
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.20);
+
+  --shadow-sm: 0 8px 25px rgba(0, 0, 0, 0.20);
+  --shadow-md: 0 18px 50px rgba(0, 0, 0, 0.30);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.42);
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  --font-family-sans-serif:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+  --font-family-monospace:
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    "Courier New",
+    monospace;
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+
+  font-family: var(--font-family-sans-serif);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  color: var(--text);
+  background: var(--page-bg);
+
+  text-align: left;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
+/* =========================================================
+   APP BACKGROUND
+   ========================================================= */
+
+.app {
+  position: relative;
+  isolation: isolate;
+
+  min-height: 100vh;
+
+  color: var(--text);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(4, 17, 29, 0.35),
+      rgba(4, 17, 29, 0.85)
+    );
+}
+
+.site-video-wrap {
+  position: fixed;
+  inset: 0;
+
+  z-index: -5;
+
+  overflow: hidden;
+
+  background: var(--page-bg);
+}
+
+.site-video-wrap::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(4, 17, 29, 0.55),
+      rgba(4, 17, 29, 0.82)
+    );
+
+  pointer-events: none;
+}
+
+.site-video {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0.80;
+
+  filter:
+    brightness(0.55)
+    saturate(0.70);
+
+  transform: scale(1.04);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   COMMON CONTAINER
+   ========================================================= */
+
+.container {
+  position: relative;
+  z-index: 2;
+
+  width: min(1180px, calc(100% - 32px));
+
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  position: relative;
+
+  min-height: 430px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 80px 24px 130px;
+
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(4, 16, 28, 0.72),
+      rgba(4, 16, 28, 0.36)
+    );
+
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  width: min(1180px, 100%);
+
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+
+  margin-top: 28px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+
+  color: var(--gold);
+
+  font-size: 0.78rem;
+  font-weight: 900;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 900px;
+
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(2.8rem, 6vw, 5.4rem);
+
+  line-height: 0.98;
+
+  letter-spacing: -0.055em;
+
+  text-shadow:
+    0 5px 30px rgba(0, 0, 0, 0.65);
+}
+
+.subtitle {
+  max-width: 760px;
+
+  margin: 20px 0 0;
+
+  color: rgba(255, 255, 255, 0.86);
+
+  font-size: 1.08rem;
+
+  line-height: 1.75;
+}
+
+
+/* =========================================================
+   COMMON CARDS
+   ========================================================= */
+
+.card,
+.results-card,
+.student-bar,
+.election-card,
+.candidate-card,
+.candidate-approval-card,
+.admin-form-card {
+  background:
+    rgba(8, 24, 38, 0.95);
+
+  border:
+    1px solid var(--border);
+
+  box-shadow:
+    var(--shadow-md);
+
+  backdrop-filter: blur(18px);
+}
+
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+.login-card {
+  width: min(420px, calc(100% - 30px));
+
+  margin: 80px auto;
+
+  padding: 32px;
+
+  border-radius: var(--radius-xl);
+
+  background:
+    rgba(8, 24, 38, 0.96);
+
+  border:
+    1px solid var(--border);
+
+  box-shadow:
+    var(--shadow-lg);
+
+  color: #ffffff;
+}
+
+.login-card h2 {
+  margin: 0 0 10px;
+
+  color: #ffffff;
+
+  font-size: 1.7rem;
+}
+
+.login-card p {
+  margin: 0 0 22px;
+
+  color: var(--text-muted);
+}
+
+.login-card label {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  margin-bottom: 16px;
+
+  color: var(--text-soft);
+
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.login-card input {
+  width: 100%;
+
+  min-height: 50px;
+
+  padding: 12px 14px;
+
+  border:
+    1px solid var(--border-strong);
+
+  border-radius: var(--radius-sm);
+
+  outline: none;
+
+  background:
+    rgba(3, 13, 23, 0.90);
+
+  color: #ffffff;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.login-card input:focus {
+  border-color: var(--gold);
+
+  box-shadow:
+    0 0 0 3px rgba(246, 196, 83, 0.14);
+}
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.login-card button {
+  width: 100%;
+  min-height: 52px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, var(--gold), #e3a82f);
+  color: #111820;
+
+  font-weight: 850;
+  box-shadow: 0 10px 25px rgba(246, 196, 83, 0.2);
+
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.login-card button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.forgot-password {
+  display: inline-flex;
+  align-items: center;
+  margin-top: -4px;
+
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.section-heading {
+  margin: 26px 0 18px;
+}
+
+.section-heading h2 {
+  margin: 6px 0 0;
+  color: #ffffff;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+
+.student-bar {
+  position: sticky;
+  top: 14px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  margin: 28px 0 20px;
+  padding: 18px 22px;
+
+  border-radius: var(--radius-lg);
+  background: rgba(9, 27, 41, 0.92);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.student-bar > div {
+  display: grid;
+  gap: 4px;
+}
+
+.student-bar span {
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.student-bar strong {
+  color: #ffffff;
+  font-size: 1.02rem;
+}
+
+.student-bar small {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.admin-form .form-grid label input + input {
+  margin-top: 4px;
+}
+
+.election-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-bottom: 28px;
+}
+
+.election-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+
+  width: 100%;
+  padding: 22px 20px 18px;
+
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(9, 28, 44, 0.96), rgba(7, 18, 28, 0.96));
+  border: 1px solid var(--border);
+  text-align: left;
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.election-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(246, 196, 83, 0.35);
+}
+
+.election-card.selected {
+  border-color: rgba(246, 196, 83, 0.72);
+  box-shadow: 0 14px 28px rgba(246, 196, 83, 0.12);
+}
+
+.election-card h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.25;
+}
+
+.election-card p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.96rem;
+}
+
+.election-card small {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.status.active {
+  background: rgba(40, 167, 69, 0.12);
+  border-color: rgba(40, 167, 69, 0.42);
+  color: #8ff0a4;
+}
+
+.status.upcoming {
+  background: rgba(246, 196, 83, 0.12);
+  border-color: rgba(246, 196, 83, 0.32);
+  color: var(--gold);
+}
+
+.status.closed {
+  background: rgba(220, 53, 69, 0.1);
+  border-color: rgba(220, 53, 69, 0.35);
+  color: #ff9ba5;
+}
+
+.countdown-pill,
+.countdown-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #eaf6ff;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.selected-election-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.voting-section {
+  display: grid;
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.candidate-card button {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--gold), #e3a82f);
+  color: #111820;
+  font-weight: 850;
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.candidate-card button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+}
+
+.results-card {
+  width: 100%;
+  padding: 24px 22px;
+  border-radius: var(--radius-lg);
+  background: rgba(9, 27, 41, 0.96);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.results-header h2 {
+  margin: 6px 0 0;
+  font-size: clamp(1.5rem, 2.3vw, 2.1rem);
+  line-height: 1.2;
+}
+
+.results-header strong {
+  color: var(--gold);
+  font-size: 0.95rem;
+}
+
+.result-row {
+  display: grid;
+  gap: 10px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.result-row:first-of-type {
+  border-top: none;
+}
+
+.result-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.result-info strong {
+  color: #ffffff;
+  font-size: 0.98rem;
+}
+
+.result-info span {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.progress {
+  width: 100%;
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.progress-bar {
+  height: 100%;
+  min-width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--gold), #dca936);
+}
+
+
+/* =========================================================
+   APPLICATION PAGE
+   ========================================================= */
+
+.application-page {
+  color: #ffffff;
+}
+
+.application-page p,
+.application-page span,
+.application-page small,
+.application-page label,
+.application-page h1,
+.application-page h2,
+.application-page h3,
+.application-page h4,
+.application-page h5,
+.application-page strong {
+  opacity: 1;
+}
+
+.candidate-application-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: rgba(246, 196, 83, 0.12);
+  border: 1px solid rgba(246, 196, 83, 0.28);
+  color: var(--gold);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.section-kicker {
+  margin: 0 0 6px;
+  color: var(--gold);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.required {
+  color: #ffb6a8;
+  font-weight: 900;
+}
+
+.input-with-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.input-with-button input {
+  flex: 1;
+}
+
+.input-with-button .secondary-button {
+  min-width: 130px;
+  white-space: nowrap;
+}
+
+.verification-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 18px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: rgba(40, 167, 69, 0.1);
+  border: 1px solid rgba(40, 167, 69, 0.28);
+  color: #bdf7c9;
+}
+
+.verification-box strong {
+  color: #c7ffd7;
+}
+
+.candidate-status-panel {
+  display: grid;
+  gap: 16px;
+  margin-top: 22px;
+  padding: 20px;
+  border: 1px solid rgba(246, 196, 83, 0.22);
+  border-radius: 16px;
+  background: rgba(246, 196, 83, 0.045);
+}
+
+.candidate-status-panel h3 {
+  margin: 0;
+  color: #fff;
+}
+
+.candidate-status-list {
+  display: grid;
+  gap: 10px;
+}
+
+.candidate-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.candidate-status-row > div {
+  display: grid;
+  gap: 4px;
+}
+
+.candidate-status-row span,
+.candidate-status-row small {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.candidate-status-row .status {
+  color: inherit;
+  font-size: 0.72rem;
+}
+
+.election-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.election-summary > div {
+  display: grid;
+  gap: 7px;
+  padding: 18px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.election-summary span {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.election-summary strong {
+  color: #ffffff;
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+
+.upload-layout {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.upload-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 180px;
+  padding: 22px;
+  border-radius: 16px;
+  border: 1px dashed rgba(246, 196, 83, 0.35);
+  background: rgba(246, 196, 83, 0.05);
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+
+.upload-box:hover {
+  border-color: rgba(246, 196, 83, 0.7);
+  background: rgba(246, 196, 83, 0.08);
+  transform: translateY(-1px);
+}
+
+.upload-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.selected-file {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: #9de8b0;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.photo-preview,
+.video-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.photo-preview img,
+.video-preview video {
+  display: block;
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(246, 196, 83, 0.28);
+  background: #07131d;
+}
+
+.document-upload-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.review-item {
+  display: grid;
+  gap: 8px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.review-item span {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.review-item strong {
+  color: #ffffff;
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+
+.document-status-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.document-status-list > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.document-status-list strong {
+  color: #d4ffd8;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.submission-notice {
+  margin-top: 22px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: rgba(246, 196, 83, 0.09);
+  border: 1px solid rgba(246, 196, 83, 0.25);
+}
+
+.submission-notice strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--gold);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.submission-notice p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+}
+
+.submit-area {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 8px;
+}
+
+.submit-area .primary-button {
+  width: fit-content;
+  min-width: 260px;
+  min-height: 54px;
+  padding: 14px 28px;
+}
+
+.submit-area p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.application-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(4, 17, 29, 0.18), rgba(4, 17, 29, 0.5));
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   APPLICATION CONTAINER
+   ========================================================= */
+
+.application-page .container {
+  margin:
+    -80px auto 90px;
+}
+
+
+/* =========================================================
+   APPLICATION CARD
+   ========================================================= */
+
+.application-card {
+  width: 100%;
+
+  padding: 44px;
+
+  border-radius: var(--radius-xl);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(9, 28, 44, 0.98),
+      rgba(5, 19, 31, 0.97)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.15);
+
+  box-shadow:
+    var(--shadow-lg);
+
+  color: #ffffff;
+}
+
+.application-card h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+
+  line-height: 1.2;
+
+  letter-spacing: -0.03em;
+}
+
+.application-card > p {
+  margin: 10px 0 35px;
+
+  color: var(--text-soft);
+
+  font-size: 0.96rem;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   APPLICATION FORM
+   ========================================================= */
+
+.application-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 30px;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   APPLICATION SECTION
+   ========================================================= */
+
+.application-section {
+  width: 100%;
+
+  padding: 30px;
+
+  border-radius: var(--radius-lg);
+
+  background:
+    rgba(255, 255, 255, 0.045);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.11);
+}
+
+.application-section-header {
+  margin-bottom: 25px;
+}
+
+.application-section-header h3 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 1.3rem;
+  font-weight: 850;
+}
+
+.application-section-header p {
+  margin: 7px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 0.88rem;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 22px;
+
+  width: 100%;
+}
+
+.form-grid.three-columns {
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+}
+
+
+/* =========================================================
+   FORM LABELS
+   ========================================================= */
+
+.application-form label,
+.application-section label {
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+
+  min-width: 0;
+
+  color: #ffffff;
+
+  font-size: 0.9rem;
+  font-weight: 750;
+
+  line-height: 1.4;
+}
+
+.application-form label small,
+.application-section label small {
+  color: var(--text-muted);
+
+  font-size: 0.78rem;
+  font-weight: 400;
+
+  line-height: 1.5;
+}
+
+.field-help {
+  display: block;
+
+  margin-top: -2px;
+
+  color: var(--text-muted) !important;
+
+  font-size: 0.78rem !important;
+  font-weight: 400 !important;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   FORM INPUTS
+   ========================================================= */
+
+.application-form input:not([type="file"]):not([type="checkbox"]),
+.application-form select,
+.application-form textarea,
+.application-section input:not([type="file"]):not([type="checkbox"]),
+.application-section select,
+.application-section textarea,
+.candidate-application-form input:not([type="file"]):not([type="checkbox"]),
+.candidate-application-form select,
+.candidate-application-form textarea {
+  width: 100%;
+
+  border:
+    1px solid var(--border-strong);
+
+  border-radius: 12px;
+
+  outline: none;
+
+  background:
+    rgba(2, 13, 23, 0.90);
+
+  color: #ffffff;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.application-form input:not([type="file"]):not([type="checkbox"]),
+.application-section input:not([type="file"]):not([type="checkbox"]) {
+  min-height: 52px;
+
+  padding: 13px 15px;
+
+  font-size: 0.92rem;
+}
+
+.application-form select,
+.application-section select {
+  min-height: 52px;
+
+  padding: 13px 15px;
+
+  cursor: pointer;
+
+  color-scheme: dark;
+}
+
+.application-form textarea,
+.application-section textarea {
+  min-height: 160px;
+
+  padding: 15px;
+
+  resize: vertical;
+
+  font-size: 0.92rem;
+
+  line-height: 1.65;
+}
+
+.application-form input::placeholder,
+.application-form textarea::placeholder,
+.application-section input::placeholder,
+.application-section textarea::placeholder {
+  color:
+    rgba(255, 255, 255, 0.38);
+
+  opacity: 1;
+}
+
+.application-form input:not([type="file"]):not([type="checkbox"]):focus,
+.application-form select:focus,
+.application-form textarea:focus,
+.application-section input:not([type="file"]):not([type="checkbox"]):focus,
+.application-section select:focus,
+.application-section textarea:focus,
+.candidate-application-form input:not([type="file"]):not([type="checkbox"]):focus,
+.candidate-application-form select:focus,
+.candidate-application-form textarea:focus {
+  border-color: var(--gold);
+
+  background:
+    rgba(2, 13, 23, 0.98);
+
+  box-shadow:
+    0 0 0 3px rgba(246, 196, 83, 0.14);
+}
+
+.application-form select option,
+.application-section select option {
+  background: #0a1d2d;
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   WRITING AREAS
+   ========================================================= */
+
+.writing-grid {
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: 22px;
+}
+
+.writing-block {
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+.writing-block textarea {
+  min-height: 180px;
+}
+
+.writing-counter {
+  align-self: flex-end;
+
+  color: var(--text-faint);
+
+  font-size: 0.75rem;
+}
+
+
+/* =========================================================
+   DOCUMENT UPLOADS
+   ========================================================= */
+
+.document-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 20px;
+
+  width: 100%;
+}
+
+.document-upload {
+  min-height: 205px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  gap: 18px;
+
+  padding: 22px;
+
+  border:
+    1px dashed rgba(246, 196, 83, 0.42);
+
+  border-radius: 16px;
+
+  background:
+    rgba(246, 196, 83, 0.035);
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.document-upload:hover {
+  border-color:
+    rgba(246, 196, 83, 0.80);
+
+  background:
+    rgba(246, 196, 83, 0.065);
+
+  transform:
+    translateY(-2px);
+}
+
+.document-upload-title {
+  display: block;
+
+  color: #ffffff;
+
+  font-size: 1rem;
+  font-weight: 850;
+}
+
+.document-upload-description {
+  display: block;
+
+  margin-top: 6px;
+
+  color: var(--text-muted);
+
+  font-size: 0.78rem;
+  font-weight: 400;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   FILE INPUT
+   ========================================================= */
+
+.application-form input[type="file"],
+.application-section input[type="file"],
+.document-upload input[type="file"],
+.candidate-application-form input[type="file"] {
+  width: 100%;
+
+  min-height: 50px;
+
+  padding: 8px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.17);
+
+  border-radius: 11px;
+
+  background:
+    rgba(0, 10, 18, 0.86);
+
+  color:
+    rgba(255, 255, 255, 0.72);
+
+  font-size: 0.78rem;
+
+  cursor: pointer;
+}
+
+.application-form input[type="file"]::file-selector-button,
+.application-section input[type="file"]::file-selector-button,
+.document-upload input[type="file"]::file-selector-button {
+  margin-right: 12px;
+
+  padding: 10px 15px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background:
+    var(--gold);
+
+  color:
+    #101820;
+
+  font-family: inherit;
+
+  font-size: 0.8rem;
+  font-weight: 850;
+
+  cursor: pointer;
+}
+
+.application-form input[type="file"]::file-selector-button:hover,
+.application-section input[type="file"]::file-selector-button:hover,
+.document-upload input[type="file"]::file-selector-button:hover {
+  background:
+    #ffd66f;
+}
+
+
+/* =========================================================
+   VIDEO UPLOAD
+   ========================================================= */
+
+.video-upload {
+  width: 100%;
+
+  padding: 28px;
+
+  border-radius: 18px;
+
+  border:
+    1px solid rgba(246, 196, 83, 0.25);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(246, 196, 83, 0.075),
+      rgba(255, 255, 255, 0.025)
+    );
+}
+
+.video-upload h4 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 1.08rem;
+  font-weight: 850;
+}
+
+.video-upload p {
+  margin: 8px 0 20px;
+
+  color: var(--text-muted);
+
+  font-size: 0.84rem;
+
+  line-height: 1.65;
+}
+
+.video-upload input[type="file"] {
+  width: 100%;
+}
+
+
+/* =========================================================
+   FILE STATUS
+   ========================================================= */
+
+.file-selected {
+  margin-top: 8px;
+
+  color: #8ff0a4;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+
+  word-break: break-word;
+}
+
+.file-not-selected {
+  margin-top: 8px;
+
+  color: var(--text-faint);
+
+  font-size: 0.78rem;
+}
+
+
+/* =========================================================
+   DECLARATION
+   ========================================================= */
+
+.application-declaration {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 13px;
+
+  padding: 19px;
+
+  border-radius: 13px;
+
+  background:
+    rgba(255, 255, 255, 0.045);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.11);
+}
+
+.application-declaration input[type="checkbox"] {
+  width: 19px;
+  height: 19px;
+
+  margin: 2px 0 0;
+
+  flex: 0 0 auto;
+
+  accent-color:
+    var(--gold);
+
+  cursor: pointer;
+}
+
+.application-declaration span {
+  color:
+    rgba(255, 255, 255, 0.74);
+
+  font-size: 0.84rem;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   NOTICE
+   ========================================================= */
+
+.application-notice {
+  width: 100%;
+
+  padding: 18px 20px;
+
+  border-radius: 13px;
+
+  background:
+    rgba(246, 196, 83, 0.08);
+
+  border:
+    1px solid rgba(246, 196, 83, 0.28);
+
+  color:
+    rgba(255, 255, 255, 0.82);
+
+  font-size: 0.84rem;
+
+  line-height: 1.7;
+}
+
+.application-notice strong {
+  color: var(--gold);
+
+  font-weight: 850;
+}
+
+
+/* =========================================================
+   SUBMIT AREA
+   ========================================================= */
+
+.application-submit-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  padding-top: 5px;
+}
+
+.application-submit-note {
+  max-width: 650px;
+
+  color:
+    rgba(255, 255, 255, 0.50);
+
+  font-size: 0.78rem;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   BUTTON SYSTEM
+   ========================================================= */
+
+.primary-button,
+.secondary-button,
+.approve-button,
+.reject-button,
+.verify-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 46px;
+
+  padding: 11px 20px;
+
+  border-radius: 10px;
+
+  border: 1px solid transparent;
+
+  font-family: inherit;
+
+  font-size: 0.9rem;
+  font-weight: 850;
+
+  line-height: 1;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.primary-button {
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold),
+      #e3a82f
+    );
+
+  color: #111820;
+
+  box-shadow:
+    0 10px 25px rgba(246, 196, 83, 0.20);
+}
+
+.primary-button:hover:not(:disabled) {
+  transform:
+    translateY(-2px);
+
+  filter:
+    brightness(1.06);
+
+  box-shadow:
+    0 14px 30px rgba(246, 196, 83, 0.28);
+}
+
+.secondary-button {
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  border-color:
+    rgba(255, 255, 255, 0.16);
+
+  color: #ffffff;
+}
+
+.secondary-button:hover:not(:disabled) {
+  background:
+    rgba(255, 255, 255, 0.14);
+
+  transform:
+    translateY(-1px);
+}
+
+.approve-button {
+  background: #28a745;
+
+  border-color: #28a745;
+
+  color: #ffffff;
+}
+
+.approve-button:hover:not(:disabled) {
+  background: #218838;
+
+  transform:
+    translateY(-1px);
+}
+
+.reject-button {
+  background:
+    transparent;
+
+  border-color:
+    rgba(255, 100, 100, 0.55);
+
+  color:
+    #ff9ba5;
+}
+
+.reject-button:hover:not(:disabled) {
+  background:
+    rgba(220, 53, 69, 0.15);
+
+  border-color:
+    #dc3545;
+
+  transform:
+    translateY(-1px);
+}
+
+.primary-button:disabled,
+.secondary-button:disabled,
+.approve-button:disabled,
+.reject-button:disabled {
+  transform: none;
+
+  filter: none;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   APPLICATION SUBMIT BUTTON
+   ========================================================= */
+
+.application-form > .primary-button {
+  align-self: flex-start;
+
+  min-width: 240px;
+
+  min-height: 54px;
+
+  padding: 14px 26px;
+
+  font-size: 0.94rem;
+}
+
+
+/* =========================================================
+   MESSAGES
+   ========================================================= */
+
+.message {
+  width: 100%;
+
+  padding: 14px 18px;
+
+  border-radius: 12px;
+
+  font-size: 0.88rem;
+
+  line-height: 1.6;
+}
+
+.message.success {
+  background:
+    rgba(40, 167, 69, 0.14);
+
+  border:
+    1px solid rgba(40, 167, 69, 0.35);
+
+  color:
+    #8ff0a4;
+}
+
+.message.error {
+  background:
+    rgba(220, 53, 69, 0.14);
+
+  border:
+    1px solid rgba(220, 53, 69, 0.38);
+
+  color:
+    #ff9ba5;
+}
+
+.message.info {
+  background:
+    rgba(23, 162, 184, 0.14);
+
+  border:
+    1px solid rgba(23, 162, 184, 0.35);
+
+  color:
+    #8de8f5;
+}
+
+
+/* =========================================================
+   CANDIDATE CARDS
+   ========================================================= */
+
+.candidate-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 22px;
+}
+
+.candidate-card {
+  padding: 22px;
+
+  border-radius: var(--radius-lg);
+}
+
+.candidate-card h3 {
+  margin: 12px 0 7px;
+
+  color: #ffffff;
+}
+
+.candidate-card p {
+  color:
+    rgba(255, 255, 255, 0.67);
+
+  line-height: 1.65;
+}
+
+.candidate-avatar {
+  width: 74px;
+  height: 74px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border:
+    2px solid rgba(246, 196, 83, 0.55);
+
+  background:
+    rgba(246, 196, 83, 0.10);
+
+  color: var(--gold);
+
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   PARTNER SIGNATURE
+   ========================================================= */
+
+.partner-signature {
+  display: grid;
+
+  gap: 4px;
+
+  padding:
+    42px 24px 34px;
+
+  color:
+    rgba(255, 255, 255, 0.65);
+
+  text-align: center;
+
+  font-size: 0.82rem;
+
+  letter-spacing: 0.04em;
+}
+
+.partner-signature strong {
+  color: var(--gold);
+
+  font-size: 0.95rem;
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+
+  padding: 0 22px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      #0056b3
+    );
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-weight: 850;
+
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease;
+}
+
+.cta-link:hover {
+  transform:
+    translateY(-2px);
+
+  filter:
+    brightness(1.08);
+}
+
+
+/* =========================================================
+   ADMIN APPLICATION
+   ========================================================= */
+
+.admin-app {
+  min-height: 100vh;
+
+  color: #ffffff;
+}
+
+.admin-app .container {
+  width: min(1180px, calc(100% - 32px));
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* =========================================================
+   ADMIN SECTION HEADING
+   ========================================================= */
+
+.admin-app .section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  margin: 0 0 24px;
+}
+
+.admin-app .section-heading h2 {
+  margin: 6px 0 8px;
+
+  color: #ffffff;
+
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+}
+
+.admin-app .section-heading p:not(.eyebrow) {
+  margin: 0;
+
+  color:
+    rgba(255, 255, 255, 0.72);
+}
+
+.admin-app .eyebrow {
+  color: var(--gold);
+}
+
+
+/* =========================================================
+   ADMIN MESSAGES
+   ========================================================= */
+
+.admin-app .message {
+  width: 100%;
+
+  margin: 0 0 20px;
+
+  padding: 14px 18px;
+
+  border-radius: 12px;
+
+  font-weight: 700;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   CREATE ELECTION FORM
+   ========================================================= */
+
+.admin-form-card {
+  width: 100%;
+
+  padding: 30px;
+
+  margin-bottom: 45px;
+
+  border-radius: 22px;
+
+  background:
+    rgba(8, 23, 38, 0.96);
+
+  border:
+    1px solid rgba(246, 196, 83, 0.18);
+
+  box-shadow:
+    var(--shadow-md);
+}
+
+.admin-form {
+  display: grid;
+
+  gap: 24px;
+
+  width: 100%;
+}
+
+.admin-form .form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+
+  width: 100%;
+}
+
+.admin-form .form-grid label {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  min-width: 0;
+
+  color: #ffffff;
+
+  font-size: 0.92rem;
+
+  font-weight: 750;
+}
+
+.admin-form .form-grid input,
+.admin-form .form-grid select {
+  width: 100%;
+
+  min-height: 50px;
+
+  padding: 12px 14px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.20);
+
+  border-radius: 11px;
+
+  outline: none;
+
+  background:
+    rgba(3, 13, 23, 0.90);
+
+  color: #ffffff;
+
+  color-scheme: dark;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-form .form-grid input::placeholder {
+  color:
+    rgba(255, 255, 255, 0.42);
+}
+
+.admin-form .form-grid input:focus,
+.admin-form .form-grid select:focus {
+  border-color:
+    var(--gold);
+
+  box-shadow:
+    0 0 0 3px rgba(246, 196, 83, 0.14);
+}
+
+.admin-form .form-grid select option {
+  background: #0b1c2d;
+
+  color: #ffffff;
+}
+
+.admin-form > .primary-button {
+  width: fit-content;
+
+  min-width: 170px;
+}
+
+
+/* =========================================================
+   ADMIN BUTTONS
+   ========================================================= */
+
+.admin-app .primary-button,
+.admin-app .secondary-button,
+.admin-app .approve-button,
+.admin-app .reject-button {
+  min-height: 46px;
+
+  padding: 11px 20px;
+
+  border-radius: 10px;
+
+  font-size: 0.92rem;
+
+  font-weight: 800;
+}
+
+.admin-app .primary-button {
+  width: fit-content;
+
+  min-width: 170px;
+}
+
+.admin-app .secondary-button {
+  min-width: 100px;
+}
+
+
+/* =========================================================
+   ELECTION GRID
+   ========================================================= */
+
+.admin-app .election-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 22px;
+
+  margin-bottom: 50px;
+}
+
+
+/* =========================================================
+   CANDIDATE MANAGEMENT
+   ========================================================= */
+
+.candidate-management-section {
+  margin-top: 55px;
+}
+
+.pending-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 38px;
+
+  padding: 7px 14px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(246, 196, 83, 0.13);
+
+  border:
+    1px solid rgba(246, 196, 83, 0.30);
+
+  color: var(--gold);
+
+  font-size: 0.86rem;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+.empty-state {
+  padding: 28px;
+
+  margin-bottom: 20px;
+
+  border-radius: 16px;
+
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  border:
+    1px solid var(--border);
+}
+
+.empty-state p {
+  margin: 0;
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   CANDIDATE APPROVAL CARD
+   ========================================================= */
+
+.candidate-approval-grid {
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: 28px;
+}
+
+.admin-app .candidate-approval-card {
+  width: 100%;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(7, 20, 33, 0.98),
+      rgba(10, 25, 40, 0.96)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.12);
+
+  box-shadow:
+    0 18px 35px rgba(0, 0, 0, 0.18);
+
+  cursor: pointer;
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.admin-app .candidate-approval-card:hover {
+  border-color: rgba(246, 196, 83, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 20px 38px rgba(0, 0, 0, 0.22);
+}
+
+.admin-app .candidate-approval-card.collapsed {
+  max-height: 170px;
+}
+
+.admin-app .candidate-approval-card.expanded {
+  border-color: rgba(246, 196, 83, 0.45);
+  box-shadow: 0 22px 40px rgba(246, 196, 83, 0.08);
+}
+
+.admin-app .candidate-header-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.expand-hint {
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.candidate-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0 26px 18px;
+  background: rgba(255, 255, 255, 0.015);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.candidate-summary > div {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  padding-top: 16px;
+}
+
+.candidate-summary strong {
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.candidate-summary span {
+  color: #ffffff;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.admin-missing-file {
+  padding: 18px 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* =========================================================
+   CANDIDATE APPROVAL HEADER
+   ========================================================= */
+
+.admin-app .candidate-approval-header {
+  display: grid;
+
+  grid-template-columns:
+    auto minmax(0, 1fr) auto;
+
+  align-items: center;
+
+  gap: 16px;
+
+  padding: 22px 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(246, 196, 83, 0.10),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.10);
+}
+
+.admin-app .candidate-approval-header:hover {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(246, 196, 83, 0.14),
+      rgba(255, 255, 255, 0.035)
+    );
+}
+
+.admin-app .candidate-avatar {
+  width: 64px;
+  height: 64px;
+
+  font-size: 1.45rem;
+}
+
+.candidate-header-info {
+  min-width: 0;
+}
+
+.candidate-header-info h3 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 1.25rem;
+
+  line-height: 1.25;
+}
+
+.candidate-header-info p {
+  margin: 4px 0 2px;
+
+  color:
+    rgba(255, 255, 255, 0.75);
+
+  font-size: 0.90rem;
+}
+
+.candidate-header-info span {
+  color:
+    rgba(255, 255, 255, 0.45);
+
+  font-size: 0.78rem;
+}
+
+.admin-app .status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 30px;
+
+  padding: 6px 11px;
+
+  border-radius: 999px;
+
+  font-size: 0.75rem;
+
+  font-weight: 900;
+
+  white-space: nowrap;
+}
+
+.admin-app .status.upcoming {
+  background:
+    rgba(246, 196, 83, 0.13);
+
+  border:
+    1px solid rgba(246, 196, 83, 0.30);
+
+  color: var(--gold);
+}
+
+.admin-app .status.approved {
+  background: rgba(40, 167, 69, 0.12);
+  border: 1px solid rgba(40, 167, 69, 0.35);
+  color: #9df2ae;
+}
+
+.admin-app .status.rejected {
+  background: rgba(220, 53, 69, 0.12);
+  border: 1px solid rgba(220, 53, 69, 0.35);
+  color: #ff9ba5;
+}
+
+.danger-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 11px 20px;
+  border: 1px solid rgba(255, 100, 100, 0.55);
+  border-radius: 10px;
+  background: rgba(220, 53, 69, 0.12);
+  color: #ffb0b7;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 800;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.danger-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: rgba(220, 53, 69, 0.24);
+  border-color: #ff7d89;
+}
+
+.admin-election-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.admin-election-actions > button {
+  min-height: 42px;
+  padding: 9px 14px;
+  border: 1px solid rgba(246, 196, 83, 0.3);
+  border-radius: 9px;
+  background: rgba(246, 196, 83, 0.12);
+  color: var(--gold);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.admin-election-actions > button:hover:not(:disabled) {
+  background: rgba(246, 196, 83, 0.2);
+}
+
+.admin-election-actions > .secondary-button,
+.admin-election-actions > .danger-button {
+  border-radius: 9px;
+}
+
+.admin-page-link-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  margin: -98px auto 58px;
+}
+
+.super-admin-panel {
+  display: grid;
+  gap: 22px;
+  margin-bottom: 40px;
+  padding: 28px;
+  border: 1px solid rgba(246, 196, 83, 0.3);
+  border-radius: 22px;
+  background: rgba(8, 24, 38, 0.96);
+  box-shadow: var(--shadow-md);
+}
+
+.overview-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.overview-stat {
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.overview-stat span,
+.managed-admin-row span,
+.godmode-election-row span {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+}
+
+.overview-stat strong {
+  color: var(--gold);
+  font-size: 1.7rem;
+}
+
+.godmode-election-list,
+.managed-admin-list {
+  display: grid;
+  gap: 12px;
+}
+
+.godmode-election-list h3,
+.super-admin-management-grid h3 {
+  margin: 0;
+}
+
+.godmode-election-row,
+.managed-admin-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.godmode-election-row > div:first-child,
+.managed-admin-row > div:first-child {
+  display: grid;
+  gap: 5px;
+}
+
+.godmode-election-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.godmode-election-metrics span {
+  padding: 6px 9px;
+  border: 1px solid rgba(246, 196, 83, 0.2);
+  border-radius: 999px;
+  color: var(--gold);
+  font-size: 0.72rem;
+}
+
+.super-admin-management-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 18px;
+}
+
+.super-admin-management-grid .admin-form-card {
+  margin: 0;
+  padding: 22px;
+}
+
+.super-admin-management-grid label {
+  display: grid;
+  gap: 7px;
+  margin-top: 14px;
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.super-admin-management-grid input {
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 9px;
+  background: rgba(3, 13, 23, 0.9);
+  color: #fff;
+}
+
+.super-admin-management-grid select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid rgba(246, 196, 83, 0.42);
+  border-radius: 9px;
+  outline: none;
+  background: #071a2a;
+  color: #ffffff;
+  color-scheme: dark;
+  cursor: pointer;
+}
+
+.super-admin-management-grid select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(246, 196, 83, 0.14);
+}
+
+.super-admin-management-grid select option {
+  background: #071a2a;
+  color: #ffffff;
+}
+
+.super-admin-management-grid .primary-button {
+  margin-top: 18px;
+}
+
+.candidate-management-only .admin-election-management,
+.candidate-management-only .admin-live-results {
+  display: none;
+}
+
+.candidate-management-only .candidate-management-section {
+  margin-top: 0;
+}
+
+#admin-results {
+  scroll-margin-top: 24px;
+}
+
+
+/* =========================================================
+   ADMIN APPLICATION SECTION
+   ========================================================= */
+
+.admin-application-section {
+  padding: 28px 30px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
+.admin-application-section:last-of-type {
+  border-bottom: none;
+}
+
+.admin-application-section-title {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 14px;
+
+  margin-bottom: 22px;
+}
+
+.admin-application-section-title > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 8px;
+
+  background:
+    rgba(246, 196, 83, 0.12);
+
+  border:
+    1px solid rgba(246, 196, 83, 0.25);
+
+  color: var(--gold);
+
+  font-size: 0.78rem;
+
+  font-weight: 900;
+}
+
+.admin-application-section-title h4 {
+  margin: 1px 0 4px;
+
+  color: #ffffff;
+
+  font-size: 1.05rem;
+
+  font-weight: 850;
+}
+
+.admin-application-section-title p {
+  margin: 0;
+
+  color:
+    rgba(255, 255, 255, 0.55);
+
+  font-size: 0.84rem;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   ADMIN DETAIL GRID
+   ========================================================= */
+
+.admin-detail-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 14px;
+}
+
+.admin-detail-grid > div {
+  display: grid;
+
+  grid-template-columns:
+    minmax(145px, 0.75fr)
+    minmax(0, 1.25fr);
+
+  align-items: start;
+
+  gap: 18px;
+
+  min-width: 0;
+
+  padding: 14px 16px;
+
+  border-radius: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+}
+
+.admin-detail-grid strong {
+  min-width: 0;
+
+  color:
+    rgba(255, 255, 255, 0.55);
+
+  font-size: 0.82rem;
+
+  font-weight: 750;
+
+  line-height: 1.4;
+}
+
+.admin-detail-grid span {
+  min-width: 0;
+
+  overflow-wrap: anywhere;
+
+  color: #ffffff;
+
+  font-size: 0.88rem;
+
+  font-weight: 650;
+
+  line-height: 1.45;
+}
+
+
+/* =========================================================
+   ADMIN CANDIDATE PHOTO
+   ========================================================= */
+
+.admin-candidate-photo {
+  display: flex;
+
+  justify-content: center;
+
+  padding: 18px;
+
+  border-radius: 14px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
+.admin-candidate-photo img {
+  display: block;
+
+  width: 190px;
+  height: 230px;
+
+  object-fit: cover;
+
+  border-radius: 12px;
+
+  border:
+    2px solid rgba(246, 196, 83, 0.35);
+
+  background:
+    #07131d;
+}
+
+
+/* =========================================================
+   ADMIN WRITTEN INFORMATION
+   ========================================================= */
+
+.admin-writing-block {
+  margin-top: 14px;
+
+  padding: 18px 20px;
+
+  border-radius: 12px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+}
+
+.admin-writing-block:first-of-type {
+  margin-top: 0;
+}
+
+.admin-writing-block h5 {
+  margin: 0 0 9px;
+
+  color: var(--gold);
+
+  font-size: 0.88rem;
+
+  font-weight: 850;
+}
+
+.admin-writing-block p {
+  margin: 0;
+
+  color:
+    rgba(255, 255, 255, 0.82);
+
+  font-size: 0.92rem;
+
+  line-height: 1.75;
+
+  white-space: pre-wrap;
+
+  overflow-wrap: anywhere;
+}
+
+.admin-manifesto {
+  padding: 22px;
+
+  border-radius: 14px;
+
+  background:
+    rgba(246, 196, 83, 0.045);
+
+  border:
+    1px solid rgba(246, 196, 83, 0.14);
+}
+
+.admin-manifesto p {
+  margin: 0;
+
+  color:
+    rgba(255, 255, 255, 0.86);
+
+  font-size: 0.94rem;
+
+  line-height: 1.8;
+
+  white-space: pre-wrap;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   ADMIN VIDEO
+   ========================================================= */
+
+.admin-video-container {
+  width: 100%;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+
+  background: #000000;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.10);
+}
+
+.admin-video-container video {
+  display: block;
+
+  width: 100%;
+
+  max-height: 500px;
+
+  background: #000000;
+}
+
+
+/* =========================================================
+   ADMIN DOCUMENTS
+   ========================================================= */
+
+.admin-document-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 14px;
+}
+
+.admin-document-card {
+  display: grid;
+
+  grid-template-columns:
+    auto minmax(0, 1fr) auto;
+
+  align-items: center;
+
+  gap: 13px;
+
+  min-width: 0;
+
+  padding: 16px;
+
+  border-radius: 12px;
+
+  text-decoration: none;
+
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.10);
+
+  color: #ffffff;
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+a.admin-document-card:hover {
+  transform:
+    translateY(-1px);
+
+  background:
+    rgba(246, 196, 83, 0.08);
+
+  border-color:
+    rgba(246, 196, 83, 0.35);
+}
+
+.admin-document-card > div:nth-child(2) {
+  min-width: 0;
+}
+
+.document-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 10px;
+
+  background:
+    rgba(246, 196, 83, 0.11);
+
+  font-size: 1.15rem;
+}
+
+.admin-document-card strong {
+  display: block;
+
+  color: #ffffff;
+
+  font-size: 0.86rem;
+
+  line-height: 1.35;
+}
+
+.admin-document-card span {
+  display: block;
+
+  margin-top: 3px;
+
+  color:
+    rgba(255, 255, 255, 0.55);
+
+  font-size: 0.76rem;
+
+  line-height: 1.4;
+}
+
+.admin-document-card .document-action {
+  color: var(--gold);
+
+  font-size: 0.78rem;
+
+  font-weight: 850;
+}
+
+.admin-document-card.missing {
+  grid-template-columns:
+    minmax(0, 1fr) auto;
+
+  opacity: 0.65;
+}
+
+
+/* =========================================================
+   ADMIN REVIEW NOTICE
+   ========================================================= */
+
+.admin-review-notice {
+  display: grid;
+
+  grid-template-columns:
+    auto minmax(0, 1fr);
+
+  gap: 14px;
+
+  margin:
+    0 30px 24px;
+
+  padding: 18px 20px;
+
+  border-radius: 12px;
+
+  background:
+    rgba(246, 196, 83, 0.09);
+
+  border:
+    1px solid rgba(246, 196, 83, 0.28);
+}
+
+.admin-review-notice strong {
+  color: var(--gold);
+
+  font-size: 0.88rem;
+
+  font-weight: 900;
+
+  white-space: nowrap;
+}
+
+.admin-review-notice p {
+  margin: 0;
+
+  color:
+    rgba(255, 255, 255, 0.82);
+
+  font-size: 0.86rem;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   APPROVAL ACTIONS
+   ========================================================= */
+
+.admin-app .candidate-approval-card > .candidate-actions {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  margin: 0;
+
+  padding:
+    20px 30px 26px;
+
+  background:
+    rgba(0, 0, 0, 0.10);
+}
+
+.admin-app .candidate-approval-card > .candidate-actions .approve-button,
+.admin-app .candidate-approval-card > .candidate-actions .reject-button {
+  width: auto;
+
+  min-width: 155px;
+}
+
+
+/* =========================================================
+   ADMIN TEXT
+   ========================================================= */
+
+.admin-app p,
+.admin-app span,
+.admin-app small,
+.admin-app label,
+.admin-app h1,
+.admin-app h2,
+.admin-app h3,
+.admin-app h4,
+.admin-app h5,
+.admin-app strong {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+.application-form input:focus-visible,
+.application-form select:focus-visible,
+.application-form textarea:focus-visible,
+.application-form button:focus-visible,
+.admin-app input:focus-visible,
+.admin-app select:focus-visible,
+.admin-app textarea:focus-visible,
+.admin-app button:focus-visible {
+  outline:
+    2px solid var(--gold);
+
+  outline-offset:
+    2px;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background:
+    #06131f;
+}
+
+::-webkit-scrollbar-thumb {
+  background:
+    rgba(246, 196, 83, 0.45);
+
+  border-radius:
+    20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background:
+    rgba(246, 196, 83, 0.70);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  .document-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .form-grid.three-columns {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .candidate-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* =========================================================
+   ADMIN TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .admin-form .form-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .admin-detail-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .admin-document-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .admin-app .election-grid {
+    grid-template-columns:
+      1fr;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+  .overview-stat-grid,
+  .super-admin-management-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .godmode-election-row,
+  .managed-admin-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .godmode-election-metrics {
+    justify-content: flex-start;
+  }
+
+  .upload-layout,
+  .document-upload-grid,
+  .review-grid,
+  .election-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: 360px;
+
+    padding:
+      70px 18px 110px;
+  }
+
+  .hero h1 {
+    font-size:
+      clamp(2.5rem, 13vw, 4rem);
+  }
+
+  .container {
+    width:
+      calc(100% - 20px);
+  }
+
+  .application-page .container {
+    margin-top:
+      -60px;
+  }
+
+  .application-card {
+    padding:
+      24px 18px;
+
+    border-radius:
+      18px;
+  }
+
+  .application-section {
+    padding:
+      22px 18px;
+
+    border-radius:
+      15px;
+  }
+
+  .form-grid,
+  .form-grid.three-columns {
+    grid-template-columns:
+      1fr;
+  }
+
+  .document-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .candidate-grid,
+  .candidate-approval-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .application-submit-area {
+    flex-direction:
+      column;
+
+    align-items:
+      stretch;
+  }
+
+  .application-form > .primary-button {
+    width:
+      100%;
+  }
+
+  .application-submit-area .primary-button {
+    width:
+      100%;
+  }
+
+  .candidate-actions {
+    flex-direction:
+      column;
+  }
+
+  .candidate-actions button {
+    width:
+      100%;
+  }
+
+
+  /* ADMIN */
+
+  .admin-app .container {
+    width:
+      calc(100% - 20px);
+  }
+
+  .admin-form-card {
+    padding:
+      22px 18px;
+  }
+
+  .admin-app .section-heading {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+  }
+
+  .admin-app .candidate-approval-header {
+    grid-template-columns:
+      auto minmax(0, 1fr);
+  }
+
+  .admin-app .candidate-approval-header .status {
+    grid-column:
+      1 / -1;
+
+    justify-self:
+      start;
+  }
+
+  .admin-application-section {
+    padding:
+      24px 18px;
+  }
+
+  .admin-detail-grid > div {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      5px;
+  }
+
+  .admin-review-notice {
+    grid-template-columns:
+      1fr;
+
+    margin-left:
+      18px;
+
+    margin-right:
+      18px;
+  }
+
+  .admin-app .candidate-approval-card > .candidate-actions {
+    flex-direction:
+      column;
+
+    padding-left:
+      18px;
+
+    padding-right:
+      18px;
+  }
+
+  .admin-app .candidate-approval-card > .candidate-actions .approve-button,
+  .admin-app .candidate-approval-card > .candidate-actions .reject-button {
+    width:
+      100%;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .login-card {
+    width:
+      calc(100% - 20px);
+
+    padding:
+      24px 18px;
+
+    margin:
+      50px auto;
+  }
+
+  .application-card {
+    padding:
+      20px 14px;
+  }
+
+  .application-section {
+    padding:
+      18px 14px;
+  }
+
+  .application-section-header h3 {
+    font-size:
+      1.12rem;
+  }
+
+  .application-form input:not([type="file"]):not([type="checkbox"]),
+  .application-form select,
+  .admin-form .form-grid input,
+  .admin-form .form-grid select {
+    min-height:
+      48px;
+  }
+
+  .application-form textarea {
+    min-height:
+      145px;
+  }
+
+  .document-upload {
+    min-height:
+      175px;
+
+    padding:
+      18px;
+  }
+
+  .video-upload {
+    padding:
+      20px 17px;
+  }
+
+
+  /* ADMIN */
+
+  .admin-app .candidate-approval-header {
+    padding:
+      20px 18px;
+  }
+
+  .admin-app .candidate-avatar {
+    width:
+      54px;
+
+    height:
+      54px;
+  }
+
+  .candidate-header-info h3 {
+    font-size:
+      1.05rem;
+  }
+
+  .admin-application-section {
+    padding:
+      20px 15px;
+  }
+
+  .admin-detail-grid > div {
+    padding:
+      12px 13px;
+  }
+
+  .admin-candidate-photo img {
+    width:
+      160px;
+
+    height:
+      200px;
+  }
+
+  .admin-review-notice {
+    margin-left:
+      15px;
+
+    margin-right:
+      15px;
+  }
+
+  .admin-form > .primary-button {
+    width:
+      100%;
+  }
+}
+
