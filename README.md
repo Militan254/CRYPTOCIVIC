@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # JOOUST Voting System
 
 This project contains the backend API, blockchain contract, and frontend dashboard for the JOOUST student voting system.
@@ -54,3 +55,7 @@ Required values are documented in `.env.example`.
 - The blockchain service expects a configured contract address and wallet key.
 - The frontend expects the API at `http://localhost:3000/api`.
 - Hardhat is configured to use the locally installed `solc` package so it does not rely on network access to download a compiler.
+=======
+# CRYPTOCIVIC
+decentralized, blockchain-based online voting platform designed to secure democratic processes, eliminate election fraud, and maximize voter turnout through cryptographic verification. By leveraging distributed ledger technology, the system ensures that every vote is cast securely, recorded immutably, and strictly protects voter anonymity.
+>>>>>>> 11c997ccc32b054a2c80029f072264fd9d90ee19
